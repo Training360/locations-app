@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Locations</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <script th:src="@{/js/locations-server.js}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Locations</h1>
+
+    <div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}">Saved</div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Coordinates</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <th:block th:each="location : ${page.content}">
+            <tr>
+                <td th:text="${location.name}"></td>
+                <td th:text="${location.lat + ', ' + location.lon}"></td>
+                <td>
+                        <a th:href="@{/server/details(id=${location.id})}">View</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <a th:href="@{/server/create}">Create location</a>
+
+</div>
+
+</body>
+</html>

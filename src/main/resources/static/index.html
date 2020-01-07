@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Locations</title>
+    <script src="js/locations.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+<h1>Locations</h1>
+
+<p id="pagination-div">
+    <a href="" id="prev-link">Previous</a>
+    <span id="page-span"></span>
+    <a href="" id="next-link">Next</a>
+</p>
+
+<table id="locations-table" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Coordinates</th>
+        <th>Interesting at</th>
+        <th>Tags</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="locations-table-tbody">
+
+    </tbody>
+</table>
+
+    <p id="message-div"></p>
+
+    <a href="#" id="create-location-link">Create location</a>
+
+<form id="location-form" hidden="hidden">
+    <div class="form-group">
+        <label for="location-name">Name</label>
+        <input type="text" id="location-name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="location-coords">Coordinates (format: <em>47.4979,19.0402</em>, no spaces!)</label>
+        <input type="text" id="location-coords" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="location-interesting-at">Interesting at (format: <em>2019-09-11T15:31:04</em>)</label>
+        <input type="text" id="location-interesting-at" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="location-tags">Tags (format: <em>favourite, capital</em>)</label>
+        <input type="text" id="location-tags" class="form-control"/>
+    </div>
+    <input type="submit" value="Create location" class="btn btn-primary">
+    <input type="button" value="Cancel" class="btn btn-secondary" id="create-cancel-button">
+</form>
+
+<form id="update-location-form" hidden="hidden">
+    <input type="hidden" id="update-location-id" />
+    <div class="form-group">
+        <label for="update-location-name">Name</label>
+        <input type="text" id="update-location-name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="update-location-coords">Coordinates</label>
+        <input type="text" id="update-location-coords" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="update-location-interesting-at">Interesting at</label>
+        <input type="text" id="update-location-interesting-at" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="update-location-tags">Tags</label>
+        <input type="text" id="update-location-tags" class="form-control"/>
+    </div>
+    <input type="submit" value="Update location" class="btn btn-primary">
+    <input type="button" value="Cancel" class="btn btn-secondary" id="update-cancel-button">
+</form>
+
+    <p>SOAP webservices: <a href="" class="text-light bg-dark" id="webservices-link"></a></p>
+
+    <p>REST webservices <a href="api.html">API documentation</a></p>
+
+</div>
+
+</body>
+</html>

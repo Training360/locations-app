@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Locations</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <script th:src="@{/js/locations-server.js}"></script>
+</head>
+<body>
+<div class="container">
+
+    <h1>Location details</h1>
+
+    <div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}">Saved</div>
+
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td th:text="${location.name}"></td>
+        </tr>
+        <tr>
+            <td>Coordinates</td>
+            <td th:text="${location.lat + ', ' + location.lon}"></td>
+        </tr>
+        <tr>
+            <td>Interesting at</td>
+            <td th:text="${location.interestingAt}"></td>
+        </tr>
+        <tr>
+            <td>Tags</td>
+            <td th:text="${location.tags}"></td>
+        </tr>
+    </table>
+
+    <form th:action="@{/server/delete}" method="post">
+        <input type="hidden" name="id" th:value="${location.id}" />
+        <a th:href="@{/server/update(id=${location.id})}">Edit</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a th:href="@{/server/}">Back to list</a>
+    </form>
+
+</div>
+</body>
+</html>

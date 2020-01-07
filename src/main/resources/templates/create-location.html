@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Locations</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <script th:src="@{/js/locations-server.js}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Create location</h1>
+
+    <form th:action="@{/server/create}" th:object="${createLocationCommand}" method="post">
+        <div class="form-group">
+            <label for="name-input">Name</label>
+            <input type="text" th:field="*{name}" id="name-input" class="form-control" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}">
+                Incorrect
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="coords-input">Coordinates</label>
+            <input type="text" th:field="*{coords}" id="coords-input" class="form-control" th:classappend="${#fields.hasErrors('coords')} ? 'is-invalid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('coords')}"
+                 th:errors="*{coords}">
+                Incorrect
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create location</button>
+        <a th:href="@{/server/}">Cancel</a>
+    </form>
+
+</div>
+</body>
+</html>

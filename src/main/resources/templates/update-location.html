@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Locations</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Update location</h1>
+    <form th:action="@{/server/update}" th:object="${updateLocationCommand}" method="post">
+        <input type="hidden" name="id" th:value="${updateLocationCommand.id}">
+        <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input type="text" th:field="*{name}" id="nameInput" class="form-control" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}">
+                Incorrect
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="coordsInput">Coordinates</label>
+            <input type="text" th:field="*{coords}" id="coordsInput" class="form-control" th:classappend="${#fields.hasErrors('coords')} ? 'is-invalid'"/>
+            <div class="invalid-feedback"
+                 th:if="${#fields.hasErrors('coords')}"
+                 th:errors="*{coords}">
+                Incorrect
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update location</button>
+        <a th:href="@{/server/details(id=${updateLocationCommand.id})}">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
