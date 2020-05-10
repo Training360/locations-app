@@ -72,10 +72,14 @@ function prepareCreateLocation() {
 }
 
 function cancelUpdate() {
+    document.getElementById("message-div").innerHTML = "";
+    document.getElementById("message-div").removeAttribute("class");
     setState("default");
 }
 
 function cancelCreate() {
+    document.getElementById("message-div").innerHTML = "";
+    document.getElementById("message-div").removeAttribute("class");
     document.getElementById("location-form").setAttribute("hidden", "hidden");
     document.getElementById("create-location-link").removeAttribute("hidden");
 }
@@ -229,9 +233,9 @@ function createLocationNow() {
 }
 
 function getErrorMessages(jsonData) {
-    let errorMessages = jsonData.body.errors;
+    let errorMessages = jsonData.body.validationErrors;
     let concatenated = "";
-    errorMessages.forEach(errorMessage => concatenated += errorMessage.defaultMessage + "; ");
+    errorMessages.forEach(errorMessage => concatenated += errorMessage.message + "; ");
     return concatenated;
 }
 
@@ -241,7 +245,7 @@ function successCreate() {
     document.getElementById("location-coords").value = "";
     downloadLocations();
     setState("default");
-    document.getElementById("message-div").innerHTML = "Location has created";
+    document.getElementById("message-div").innerHTML = "Location has been created";
     document.getElementById("message-div").setAttribute("class", "alert alert-success");
 }
 
@@ -265,7 +269,7 @@ function deleteLocation() {
 function successDelete() {
     console.log("Successfull delete");
     downloadLocations();
-    document.getElementById("message-div").innerHTML = "Location has deleted";
+    document.getElementById("message-div").innerHTML = "Location has been deleted";
     document.getElementById("message-div").setAttribute("class", "alert alert-success");
 }
 
@@ -313,7 +317,7 @@ function successUpdate() {
     var page = document.getElementById("page-span").innerHTML;
     downloadLocations(page);
     setState("default");
-    document.getElementById("message-div").innerHTML = "Location has modified";
+    document.getElementById("message-div").innerHTML = "Location has been modified";
     document.getElementById("message-div").setAttribute("class", "alert alert-success");
 }
 

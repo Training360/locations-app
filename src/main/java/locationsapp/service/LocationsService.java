@@ -5,6 +5,7 @@ import locationsapp.controller.LocationDto;
 import locationsapp.controller.UpdateLocationCommand;
 import locationsapp.entities.Location;
 import locationsapp.repository.LocationsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +18,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class LocationsService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(LocationsService.class);
 
     private LocationsRepository locationsRepository;
 
@@ -55,7 +55,7 @@ public class LocationsService {
         location.setTags(parseTags(command.getTags()));
 
         locationsRepository.save(location);
-        LOGGER.info(String.format("Location has created id: %s, name: %s", location.getId(), command.getName()));
+        log.info(String.format("Location has created id: %s, name: %s", location.getId(), command.getName()));
         return modelMapper.map(location, LocationDto.class);
     }
 
@@ -83,7 +83,7 @@ public class LocationsService {
         location.setInterestingAt(command.getInterestingAt());
         location.setTags(parseTags(command.getTags()));
 
-        LOGGER.info(String.format("Location has updated id: %s, name: %s", command.getId(), command.getName()));
+        log.info(String.format("Location has updated id: %s, name: %s", command.getId(), command.getName()));
         return Optional.of(modelMapper.map(location, LocationDto.class));
     }
 
@@ -91,7 +91,7 @@ public class LocationsService {
         var location = locationsRepository.findById(id);
         if (location.isPresent()) {
             locationsRepository.delete(location.get());
-            LOGGER.info(String.format("Location has deleted, id: %s", id));
+            log.info(String.format("Location has deleted, id: %s", id));
             return true;
         }
         return false;
@@ -104,4 +104,7 @@ public class LocationsService {
         return Arrays.stream(tags.split(",")).map(s -> s.trim()).filter(s -> !s.isBlank()).collect(Collectors.toList());
     }
 
+    public void deleteAllLocations() {
+        locationsRepository.deleteAll();
+    }
 }

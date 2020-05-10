@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface Coordinates {
 
-    String message() default "invalid coordinates";
+    String message() default "Invalid coordinates";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

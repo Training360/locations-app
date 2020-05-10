@@ -1,9 +1,6 @@
 package locationsapp.ws;
 
-import locationsapp.entities.Location;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

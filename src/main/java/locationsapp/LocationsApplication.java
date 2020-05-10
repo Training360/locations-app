@@ -1,5 +1,10 @@
 package locationsapp;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import locationsapp.controller.LocationDto;
 import locationsapp.controller.UpdateLocationCommand;
 import locationsapp.ws.AuthEndpoint;
@@ -66,6 +71,14 @@ public class LocationsApplication implements WebMvcConfigurer
     }
 
     @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper()
+                .findAndRegisterModules()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+    }
+
+    @Bean
     public Endpoint publishedLocationsEndpoint(LocationsEndpoint locationsEndpoint) {
         EndpointImpl endpoint = new EndpointImpl(bus, locationsEndpoint);
         endpoint.setPublishedEndpointUrl(environment.getProperty("publish.url.prefix") + "/services/locations");
@@ -100,4 +113,16 @@ public class LocationsApplication implements WebMvcConfigurer
                 .addResourceHandler("/webjars/**")
                 .addResourceLocations("/webjars/");
     }
+
+    @Bean
+
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                                .title("Locations API")
+                                .version("1.0.0")
+                                .description("Operations with locations"));
+    }
+
+
 }
