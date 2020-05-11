@@ -222,7 +222,7 @@ function createLocationNow() {
             });
         })
         .then(function(jsonData) {
-            if (jsonData.status === 200) {
+            if (jsonData.status === 201) {
                 successCreate();
             }
             else {
