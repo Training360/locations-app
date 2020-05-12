@@ -56,7 +56,7 @@ public class LocationsApplication implements WebMvcConfigurer
                         var command = new UpdateLocationCommand();
                         command.setId(source.getId());
                         command.setName(source.getName());
-                        command.setCoords(source.getLat() + ", " + source.getLon());
+                        command.setCoords(source.getLat() + "," + source.getLon());
                         command.setInterestingAt(source.getInterestingAt());
                         command.setTags(source.getTags().toString());
                         return command;

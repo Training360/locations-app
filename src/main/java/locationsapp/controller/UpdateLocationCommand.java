@@ -12,11 +12,11 @@ public class UpdateLocationCommand {
     @Schema(description = "id of the location", example = "1")
     private long id;
 
-    @NotBlank
+    @NotBlank(message = "Name must not be blank")
     @Schema(description="name of the location", example = "Budapest")
     private String name;
 
-    @Coordinates(message = "Name must not be blank")
+    @Coordinates
     @Schema(description="Coordinates of the location", example = "47.497912,19.040235", required = true)
     private String coords;
 

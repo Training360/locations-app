@@ -21,13 +21,13 @@ public class CoordinatesValidator implements ConstraintValidator<Coordinates, St
 
             if (lat < -90 || lat > 90) {
                 context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("latitude must be between -90 and 90").addConstraintViolation();
+                context.buildConstraintViolationWithTemplate("Latitude must be between -90 and 90").addConstraintViolation();
                 return false;
             }
             // NOTE: Szándékos hiba, ezt kell megtalálni, hogy nem a lon felső korlátját ellenőrzi
             if (lon < -180 || lat > 180) {
                 context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("longitude must be between -180 and 180").addConstraintViolation();
+                context.buildConstraintViolationWithTemplate("Longitude must be between -180 and 180").addConstraintViolation();
                 return false;
             }
 
