@@ -2,3 +2,35 @@ GET http://localhost:8080/api/locations
 Accept: application/json
 
 ###
+GET http://localhost:8080/api/locations/542
+Accept: application/json
+
+###
+GET http://localhost:8080/api/locations/666
+Accept: application/json
+
+###
+POST http://localhost:8080/api/locations
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name":"Budapest",
+    "coords":"47.497912,19.040235",
+    "interestingAt": "2019-01-01T05:00:00",
+    "tags": "capital,favourite"
+}
+
+### Validation error
+POST http://localhost:8080/api/locations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name":"",
+  "coords":"47.497912,19.040235",
+  "interestingAt": "2019-01-01T05:00:00",
+  "tags": "capital,favourite"
+}
+
+###

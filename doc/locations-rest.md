@@ -6,11 +6,11 @@ A kedvenc helyek lekérdezhetők a `api/locations` végponton. Két paraméter a
 A `page` az oldal (nullától számozva), a `size`, az oldal mérete, hogy mennyi találat legyen egy oldalon.
 Alapértelmezett paraméterezése: `/api/locations?page=0&size=10`.  
 
-A visszaadott eredmény a következő JSON. Az eredmény utolsó részében a lapozással és rendezéssel kapcsolatos 
+A válasz státuszkódja `200`, visszaadott eredmény a következő JSON. Az eredmény utolsó részében a lapozással és rendezéssel kapcsolatos 
 információk szerepelnek.
 
 
-```javascript
+```json
 {
     "content": [
         {
@@ -76,9 +76,9 @@ információk szerepelnek.
 Lekérdezhető a `locations/{id}` végponton, ahol az `id`
 a kedvenc hely egyedi azonosítója.
 
-A visszaadott eredmény:
+A válasz státuszkódja `200`, a visszaadott eredmény:
 
-```javascript
+```json
 {
     "id": 1,
     "name": "Budapest",
@@ -95,9 +95,12 @@ A visszaadott eredmény:
 Amennyiben a megadott azonosítóval nincs kedvenc hely, `404` sátuszkóddal
 tér vissza, és az eredmény:
 
-```javascript
+```json
 {
-    "message": "Not found"
+  "type": "locations/not-found",
+  "title": "Not found",
+  "status": 404,
+  "detail": "Not found"
 }
 ```
 
@@ -106,7 +109,7 @@ tér vissza, és az eredmény:
 A `api/locations` végponton `POST` metódussal kell a következő
 JSON-t felküldeni. Az `interestingAt` és a `tags` megadása opcionális.
 
-```javascript
+```json
 {
     "name":"Budapest",
     "coords":"47.497912,19.040235", 
@@ -115,9 +118,9 @@ JSON-t felküldeni. Az `interestingAt` és a `tags` megadása opcionális.
 }
 ```
 
-A visszaadott eredmény:
+A státuszkód `201`, a visszaadott eredmény:
 
-```javascript
+```json
 {
     "id": 7,
     "name": "Budapest",
@@ -131,7 +134,6 @@ A visszaadott eredmény:
 }
 ```
 
-Amennyiben helytelenek az adatok, `400` státuszkóddal tér vissza. 
 Ellenőrzések:
 
 * Nem lehet üres a név. `Name can not be empty!`
@@ -140,11 +142,28 @@ Ellenőrzések:
 * A hosszúsági fok értéke -180 és 180 között kell legyen. `Longitude must be between -180 and 180`
 * A dátum formátuma nem megfelelő. `Invalid Interesting at format!`
 
+Amennyiben helytelenek az adatok, `400` státuszkóddal tér vissza. Hiba esetén a válasz JSON:
+
+```json
+{
+  "type": "locations/validation-error",
+  "title": "Validation error",
+  "status": 400,
+  "detail": "Validation error",
+  "validationErrors": [
+    {
+      "field": "name",
+      "message": "Name must not be blank"
+    }
+  ]
+}
+```
+
 ## Kedvenc hely módosítása
 
 A `locations/{id}` végpontra kell a következő JSON-t küldeni:
 
-```javascript
+```json
 {
     "name":"Budapest",
     "coords":"47.497912,19.040235", 
@@ -155,7 +174,7 @@ A `locations/{id}` végpontra kell a következő JSON-t küldeni:
 
 A visszaadott eredmény:
 
-```javascript
+```json
 {
     "id": 1,
     "name": "Budapest",
@@ -169,7 +188,7 @@ A visszaadott eredmény:
 }
 ```
 
-Amennyiben a megadott azonosítóval nincs kedvenc hely, `404` sátuszkóddal
+Amennyiben a megadott azonosítóval nincs kedvenc hely, `404` státuszkóddal
 tér vissza. További ellenőrzések, mint a _Kedvenc hely felvitele_
 funkciónál.
 
@@ -177,5 +196,13 @@ funkciónál.
 
 A `locations/{id}` végponton `DELETE` metódussal.
 
+Üres válasszal tér vissza, `204` státuszkóddal.
+
 Amennyiben a megadott azonosítóval nincs kedvenc hely, `404` státuszkóddal
 tér vissza.
+
+## Összes hely törlése
+
+A `locations` végponton `DELETE` metódussal.
+
+Üres válasszal tér vissza, `204` státuszkóddal.

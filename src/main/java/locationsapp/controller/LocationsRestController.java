@@ -59,12 +59,12 @@ public class LocationsRestController {
 
     @RequestMapping(value = "/api/locations/{id}", method = RequestMethod.DELETE)
     @Operation(summary = "Delete location by id")
-    @ApiResponse(responseCode = "200", description = "location has been deleted")
+    @ApiResponse(responseCode = "204", description = "location has been deleted")
     @ApiResponse(responseCode = "404", description = "location not found")
     public ResponseEntity<Object> deleteLocation(@PathVariable long id) {
         var success = locationsService.deleteLocation(id);
         if (success) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(204).build();
         } else {
             return createNotFoundResponse();
         }
@@ -72,10 +72,10 @@ public class LocationsRestController {
 
     @RequestMapping(value = "/api/locations", method = RequestMethod.DELETE)
     @Operation(summary = "Delete all locations")
-    @ApiResponse(responseCode = "200", description = "all locations have been deleted")
+    @ApiResponse(responseCode = "204", description = "all locations have been deleted")
     public ResponseEntity<Object> deleteAllLocations() {
         locationsService.deleteAllLocations();
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(204).build();
     }
 
 

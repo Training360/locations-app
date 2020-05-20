@@ -9,135 +9,156 @@
 <div class="container">
 
     <h1 id="rest-api-leírás">REST API leírás</h1>
-<h2 id="lekérdezés">Lekérdezés</h2>
-<p>A kedvenc helyek lekérdezhetők a <code>api/locations</code> végponton. Két paraméter adható meg a lapozáshoz. A <code>page</code> az oldal (nullától számozva), a <code>size</code>, az oldal mérete, hogy mennyi találat legyen egy oldalon. Alapértelmezett paraméterezése: <code>/api/locations?page=0&amp;size=10</code>.</p>
-<p>A visszaadott eredmény a következő JSON. Az eredmény utolsó részében a lapozással és rendezéssel kapcsolatos információk szerepelnek.</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;content&quot;</span><span class="op">:</span> [
-        <span class="op">{</span>
-            <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>
-            <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-            <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.497912</span><span class="op">,</span>
-            <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">19.040235</span><span class="op">,</span>
-            <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span>
-            <span class="st">&quot;tags&quot;</span><span class="op">:</span> [
-                <span class="st">&quot;capital&quot;</span><span class="op">,</span>
+    <h2 id="lekérdezés">Lekérdezés</h2>
+    <p>A kedvenc helyek lekérdezhetők a <code>api/locations</code> végponton. Két paraméter adható meg a lapozáshoz. A <code>page</code> az oldal (nullától számozva), a <code>size</code>, az oldal mérete, hogy mennyi találat legyen egy oldalon. Alapértelmezett paraméterezése: <code>/api/locations?page=0&amp;size=10</code>.</p>
+    <p>A válasz státuszkódja <code>200</code>, visszaadott eredmény a következő JSON. Az eredmény utolsó részében a lapozással és rendezéssel kapcsolatos információk szerepelnek.</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.497912</span><span class="fu">,</span>
+            <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">19.040235</span><span class="fu">,</span>
+            <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+                <span class="st">&quot;capital&quot;</span><span class="ot">,</span>
                 <span class="st">&quot;favourite&quot;</span>
-            ]
-        <span class="op">},</span>
-        <span class="op">{</span>
-            <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span>
-            <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Debrecen&quot;</span><span class="op">,</span>
-            <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.5316049</span><span class="op">,</span>
-            <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">21.6273124</span><span class="op">,</span>
-            <span class="st">&quot;tags&quot;</span><span class="op">:</span> []
-        <span class="op">},</span>
-        <span class="op">{</span>
-            <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>
-            <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Győr&quot;</span><span class="op">,</span>
-            <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.6874569</span><span class="op">,</span>
-            <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">17.6503974</span><span class="op">,</span>
-            <span class="st">&quot;tags&quot;</span><span class="op">:</span> []
-        <span class="op">},</span>
-        <span class="op">{</span>
-            <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span>
-            <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Miskolc&quot;</span><span class="op">,</span>
-            <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">48.1034775</span><span class="op">,</span>
-            <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">20.7784384</span><span class="op">,</span>
-            <span class="st">&quot;tags&quot;</span><span class="op">:</span> []
-        <span class="op">},</span>
-        <span class="op">{</span>
-            <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span>
-            <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Veszprém&quot;</span><span class="op">,</span>
-            <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.1028087</span><span class="op">,</span>
-            <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">17.9093019</span><span class="op">,</span>
-            <span class="st">&quot;tags&quot;</span><span class="op">:</span> []
-        <span class="op">}</span>
-    ]<span class="op">,</span>
-    <span class="st">&quot;first&quot;</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>
-    <span class="st">&quot;last&quot;</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>
-    <span class="st">&quot;totalPages&quot;</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>
-    <span class="st">&quot;totalElements&quot;</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>
-    <span class="st">&quot;numberOfElements&quot;</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>
-    <span class="st">&quot;size&quot;</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span>
-    <span class="st">&quot;number&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span>
-    <span class="st">&quot;sort&quot;</span><span class="op">:</span> [
-        <span class="op">{</span>
-            <span class="st">&quot;property&quot;</span><span class="op">:</span> <span class="st">&quot;name&quot;</span><span class="op">,</span>
-            <span class="st">&quot;direction&quot;</span><span class="op">:</span> <span class="st">&quot;ASC&quot;</span><span class="op">,</span>
-            <span class="st">&quot;ignoreCase&quot;</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span>
-            <span class="st">&quot;nullHandling&quot;</span><span class="op">:</span> <span class="st">&quot;NATIVE&quot;</span>
-        <span class="op">}</span>
-    ]
-<span class="op">}</span></code></pre></div>
-<h2 id="egy-kedvenc-hely-lekérése">Egy kedvenc hely lekérése</h2>
-<p>Lekérdezhető a <code>locations/{id}</code> végponton, ahol az <code>id</code> a kedvenc hely egyedi azonosítója.</p>
-<p>A visszaadott eredmény:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>
-    <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-    <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.497912</span><span class="op">,</span>
-    <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">19.040235</span><span class="op">,</span>
-    <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span>
-    <span class="st">&quot;tags&quot;</span><span class="op">:</span> [
-        <span class="st">&quot;capital&quot;</span><span class="op">,</span>
+            <span class="ot">]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Debrecen&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.5316049</span><span class="fu">,</span>
+            <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">21.6273124</span><span class="fu">,</span>
+            <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Győr&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.6874569</span><span class="fu">,</span>
+            <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">17.6503974</span><span class="fu">,</span>
+            <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Miskolc&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">48.1034775</span><span class="fu">,</span>
+            <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">20.7784384</span><span class="fu">,</span>
+            <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">4</span><span class="fu">,</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Veszprém&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.1028087</span><span class="fu">,</span>
+            <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">17.9093019</span><span class="fu">,</span>
+            <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[]</span>
+        <span class="fu">}</span>
+    <span class="ot">]</span><span class="fu">,</span>
+    <span class="dt">&quot;first&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span>
+    <span class="dt">&quot;last&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span>
+    <span class="dt">&quot;totalPages&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span>
+    <span class="dt">&quot;totalElements&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span>
+    <span class="dt">&quot;numberOfElements&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span>
+    <span class="dt">&quot;size&quot;</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span>
+    <span class="dt">&quot;number&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="fu">,</span>
+    <span class="dt">&quot;sort&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;property&quot;</span><span class="fu">:</span> <span class="st">&quot;name&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;direction&quot;</span><span class="fu">:</span> <span class="st">&quot;ASC&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;ignoreCase&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span>
+            <span class="dt">&quot;nullHandling&quot;</span><span class="fu">:</span> <span class="st">&quot;NATIVE&quot;</span>
+        <span class="fu">}</span>
+    <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+    <h2 id="egy-kedvenc-hely-lekérése">Egy kedvenc hely lekérése</h2>
+    <p>Lekérdezhető a <code>locations/{id}</code> végponton, ahol az <code>id</code> a kedvenc hely egyedi azonosítója.</p>
+    <p>A válasz státuszkódja <code>200</code>, a visszaadott eredmény:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span>
+    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.497912</span><span class="fu">,</span>
+    <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">19.040235</span><span class="fu">,</span>
+    <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">&quot;capital&quot;</span><span class="ot">,</span>
         <span class="st">&quot;favourite&quot;</span>
-    ]
-<span class="op">}</span></code></pre></div>
-<p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> sátuszkóddal tér vissza, és az eredmény:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;message&quot;</span><span class="op">:</span> <span class="st">&quot;Not found&quot;</span>
-<span class="op">}</span></code></pre></div>
-<h2 id="kedvenc-hely-felvétele">Kedvenc hely felvétele</h2>
-<p>A <code>api/locations</code> végponton <code>POST</code> metódussal kell a következő JSON-t felküldeni. Az <code>interestingAt</code> és a <code>tags</code> megadása opcionális.</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;name&quot;</span><span class="op">:</span><span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-    <span class="st">&quot;coords&quot;</span><span class="op">:</span><span class="st">&quot;47.497912,19.040235&quot;</span><span class="op">,</span> 
-    <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span> 
-    <span class="st">&quot;tags&quot;</span><span class="op">:</span> <span class="st">&quot;capital,favourite&quot;</span>
-<span class="op">}</span></code></pre></div>
-<p>A visszaadott eredmény:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">7</span><span class="op">,</span>
-    <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-    <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.497912</span><span class="op">,</span>
-    <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">19.040235</span><span class="op">,</span>
-    <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span>
-    <span class="st">&quot;tags&quot;</span><span class="op">:</span> [
-        <span class="st">&quot;capital&quot;</span><span class="op">,</span>
+    <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+    <p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> sátuszkóddal tér vissza, és az eredmény:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;locations/not-found&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Not found&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">404</span><span class="fu">,</span>
+  <span class="dt">&quot;detail&quot;</span><span class="fu">:</span> <span class="st">&quot;Not found&quot;</span>
+<span class="fu">}</span></code></pre></div>
+    <h2 id="kedvenc-hely-felvétele">Kedvenc hely felvétele</h2>
+    <p>A <code>api/locations</code> végponton <code>POST</code> metódussal kell a következő JSON-t felküldeni. Az <code>interestingAt</code> és a <code>tags</code> megadása opcionális.</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;coords&quot;</span><span class="fu">:</span><span class="st">&quot;47.497912,19.040235&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="st">&quot;capital,favourite&quot;</span>
+<span class="fu">}</span></code></pre></div>
+    <p>A státuszkód <code>201</code>, a visszaadott eredmény:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span>
+    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.497912</span><span class="fu">,</span>
+    <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">19.040235</span><span class="fu">,</span>
+    <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">&quot;capital&quot;</span><span class="ot">,</span>
         <span class="st">&quot;favourite&quot;</span>
-    ]
-<span class="op">}</span></code></pre></div>
-<p>Amennyiben helytelenek az adatok, <code>400</code> státuszkóddal tér vissza. Ellenőrzések:</p>
-<ul>
-<li>Nem lehet üres a név. <code>Name can not be empty!</code></li>
-<li>A koordináták nem megfelelő formátumban vannak megadva. <code>Invalid coordinates format!</code></li>
-<li>A szélességi fok értéke -90 és 90 között kell legyen. <code>Latitude must be between -90 and 90</code></li>
-<li>A hosszúsági fok értéke -180 és 180 között kell legyen. <code>Longitude must be between -180 and 180</code></li>
-<li>A dátum formátuma nem megfelelő. <code>Invalid Interesting at format!</code></li>
-</ul>
-<h2 id="kedvenc-hely-módosítása">Kedvenc hely módosítása</h2>
-<p>A <code>locations/{id}</code> végpontra kell a következő JSON-t küldeni:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;name&quot;</span><span class="op">:</span><span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-    <span class="st">&quot;coords&quot;</span><span class="op">:</span><span class="st">&quot;47.497912,19.040235&quot;</span><span class="op">,</span> 
-    <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span> 
-    <span class="st">&quot;tags&quot;</span><span class="op">:</span> <span class="st">&quot;capital,favourite&quot;</span>
-<span class="op">}</span></code></pre></div>
-<p>A visszaadott eredmény:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">{</span>
-    <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>
-    <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;Budapest&quot;</span><span class="op">,</span>
-    <span class="st">&quot;lat&quot;</span><span class="op">:</span> <span class="fl">47.497912</span><span class="op">,</span>
-    <span class="st">&quot;lon&quot;</span><span class="op">:</span> <span class="fl">19.040235</span><span class="op">,</span>
-    <span class="st">&quot;interestingAt&quot;</span><span class="op">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="op">,</span>
-    <span class="st">&quot;tags&quot;</span><span class="op">:</span> [
-        <span class="st">&quot;capital&quot;</span><span class="op">,</span>
+    <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+    <p>Ellenőrzések:</p>
+    <ul>
+        <li>Nem lehet üres a név. <code>Name can not be empty!</code></li>
+        <li>A koordináták nem megfelelő formátumban vannak megadva. <code>Invalid coordinates format!</code></li>
+        <li>A szélességi fok értéke -90 és 90 között kell legyen. <code>Latitude must be between -90 and 90</code></li>
+        <li>A hosszúsági fok értéke -180 és 180 között kell legyen. <code>Longitude must be between -180 and 180</code></li>
+        <li>A dátum formátuma nem megfelelő. <code>Invalid Interesting at format!</code></li>
+    </ul>
+    <p>Amennyiben helytelenek az adatok, <code>400</code> státuszkóddal tér vissza. Hiba esetén a válasz JSON:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;locations/validation-error&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Validation error&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">400</span><span class="fu">,</span>
+  <span class="dt">&quot;detail&quot;</span><span class="fu">:</span> <span class="st">&quot;Validation error&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;validationErrors&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">&quot;field&quot;</span><span class="fu">:</span> <span class="st">&quot;name&quot;</span><span class="fu">,</span>
+      <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Name must not be blank&quot;</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+    <h2 id="kedvenc-hely-módosítása">Kedvenc hely módosítása</h2>
+    <p>A <code>locations/{id}</code> végpontra kell a következő JSON-t küldeni:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;coords&quot;</span><span class="fu">:</span><span class="st">&quot;47.497912,19.040235&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="st">&quot;capital,favourite&quot;</span>
+<span class="fu">}</span></code></pre></div>
+    <p>A visszaadott eredmény:</p>
+    <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span>
+    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Budapest&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;lat&quot;</span><span class="fu">:</span> <span class="fl">47.497912</span><span class="fu">,</span>
+    <span class="dt">&quot;lon&quot;</span><span class="fu">:</span> <span class="fl">19.040235</span><span class="fu">,</span>
+    <span class="dt">&quot;interestingAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2019-01-01T05:00:00&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;tags&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">&quot;capital&quot;</span><span class="ot">,</span>
         <span class="st">&quot;favourite&quot;</span>
-    ]
-<span class="op">}</span></code></pre></div>
-<p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> sátuszkóddal tér vissza. További ellenőrzések, mint a <em>Kedvenc hely felvitele</em> funkciónál.</p>
-<h2 id="kedvenc-hely-törlése">Kedvenc hely törlése</h2>
-<p>A <code>locations/{id}</code> végponton <code>DELETE</code> metódussal.</p>
-<p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> sátuszkóddal tér vissza.</p>
+    <span class="ot">]</span>
+<span class="fu">}</span></code></pre></div>
+    <p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> státuszkóddal tér vissza. További ellenőrzések, mint a <em>Kedvenc hely felvitele</em> funkciónál.</p>
+    <h2 id="kedvenc-hely-törlése">Kedvenc hely törlése</h2>
+    <p>A <code>locations/{id}</code> végponton <code>DELETE</code> metódussal.</p>
+    <p>Üres válasszal tér vissza, <code>204</code> státuszkóddal.</p>
+    <p>Amennyiben a megadott azonosítóval nincs kedvenc hely, <code>404</code> státuszkóddal tér vissza.</p>
+    <h2 id="összes-hely-törlése">Összes hely törlése</h2>
+    <p>A <code>locations</code> végponton <code>DELETE</code> metódussal.</p>
+    <p>Üres válasszal tér vissza, <code>204</code> státuszkóddal.</p>
+
 </div></body></html>
