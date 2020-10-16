@@ -12,7 +12,7 @@ services:
       MYSQL_USER: locations
       MYSQL_PASSWORD: locations
 
-  employees-app:
+  locations-app:
     image: training360/locations
     ports:
       - "8080:8080"
