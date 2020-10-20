@@ -11,13 +11,9 @@ RUN  apt-get update \
      && wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
      && chmod +x ./wait-for-it.sh
 COPY --from=builder application/dependencies/ ./
-RUN true
 COPY --from=builder application/spring-boot-loader/ ./
-RUN true
-COPY --from=builder application/snapshot-dependencies/ ./
-RUN true
+# COPY --from=builder application/snapshot-dependencies/ ./
 COPY --from=builder application/application/ ./
-RUN true
 ENTRYPOINT ["java", \
   "org.springframework.boot.loader.JarLauncher"]
 

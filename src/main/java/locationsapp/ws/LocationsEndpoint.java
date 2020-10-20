@@ -1,9 +1,9 @@
 package locationsapp.ws;
 
-import locationsapp.controller.CreateLocationCommand;
-import locationsapp.controller.LocationDto;
-import locationsapp.controller.LocationValidator;
-import locationsapp.controller.UpdateLocationCommand;
+import locationsapp.dto.CreateLocationCommand;
+import locationsapp.dto.LocationDto;
+import locationsapp.dto.LocationValidator;
+import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.service.LocationsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

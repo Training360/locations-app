@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface LocationsRepository extends JpaRepository<Location, Long> {
 
-    @Query(value = "select distinct l from Location l left join fetch l.tags",
+    @Query(value = "select distinct l from Location l left join fetch l.tags order by l.name",
     countQuery = "select count(l) from Location l")
     Page<Location> findAllWithTags(Pageable pageable);
 

@@ -1,5 +1,6 @@
 package locationsapp.controller;
 
+import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.service.LocationsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;

@@ -1,10 +1,13 @@
-package locationsapp.controller;
+package locationsapp.rest;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import locationsapp.dto.CreateLocationCommand;
+import locationsapp.dto.LocationDto;
+import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.error.ValidationError;
 import locationsapp.service.LocationsService;
 import org.springdoc.data.rest.converters.PageableAsQueryParam;
@@ -12,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -35,12 +39,19 @@ public class LocationsRestController {
         this.locationsService = locationsService;
     }
 
-    @RequestMapping(value = "/api/locations", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/locations/pages", method = RequestMethod.GET)
     @PageableAsQueryParam
     @Operation(summary = "List locations", description = "List locations with paging feature")
     @ApiResponse(responseCode = "200", description = "locations have been listed")
-    public Page<LocationDto> listLocations(@Parameter(hidden = true) @PageableDefault(sort = "name") Pageable pageable) {
+    public Page<LocationDto> listLocationsPerPages(@Parameter(hidden = true) @PageableDefault(sort = "name") Pageable pageable) {
         return locationsService.listLocations(pageable);
+    }
+
+    @RequestMapping(value = "/api/locations", method = RequestMethod.GET)
+    @Operation(summary = "List locations", description = "List all locations")
+    @ApiResponse(responseCode = "200", description = "locations have been listed")
+    public List<LocationDto> listLocations() {
+        return locationsService.listLocations();
     }
 
     @RequestMapping(value = "/api/locations/{id}", method = RequestMethod.GET)
@@ -140,7 +151,7 @@ public class LocationsRestController {
                 .withDetail(ex.getMessage())
                 .build();
 
-        return ResponseEntity.badRequest().body(problem);
+        return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_PROBLEM_JSON).body(problem);
     }
 
     private ResponseEntity<Object> createValidationError(List<ValidationError> validationErrors) {
@@ -152,6 +163,6 @@ public class LocationsRestController {
                 .with("validationErrors", validationErrors)
                 .build();
 
-        return ResponseEntity.badRequest().body(problem);
+        return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_PROBLEM_JSON).body(problem);
     }
 }

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import locationsapp.controller.LocationDto;
-import locationsapp.controller.UpdateLocationCommand;
+import locationsapp.dto.LocationDto;
+import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.ws.AuthEndpoint;
 import locationsapp.ws.FilesEndpoint;
 import locationsapp.ws.LocationsEndpoint;
@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
@@ -105,13 +104,6 @@ public class LocationsApplication implements WebMvcConfigurer
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/webjars/**")
-                .addResourceLocations("/webjars/");
     }
 
     @Bean

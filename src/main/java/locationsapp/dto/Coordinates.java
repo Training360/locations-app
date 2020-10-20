@@ -1,4 +1,4 @@
-package locationsapp.controller;
+package locationsapp.dto;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -1,7 +1,7 @@
 package locationsapp.controller;
 
+import locationsapp.dto.CreateLocationCommand;
 import locationsapp.service.LocationsService;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("/server/create")
 public class CreateLocationController {
 
-    private LocationsService locationsService;
+    private final LocationsService locationsService;
 
     public CreateLocationController(LocationsService locationsService) {
         this.locationsService = locationsService;
@@ -30,7 +30,7 @@ public class CreateLocationController {
     @PostMapping
     public ModelAndView postSaveLocation(
             @Valid CreateLocationCommand createLocationCommand, BindingResult bindingResult,
-            Pageable pageRequest, RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("create-location");
         }

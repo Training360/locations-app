@@ -1,14 +1,12 @@
 package locationsapp.service;
 
-import locationsapp.controller.CreateLocationCommand;
-import locationsapp.controller.LocationDto;
-import locationsapp.controller.UpdateLocationCommand;
+import locationsapp.dto.CreateLocationCommand;
+import locationsapp.dto.LocationDto;
+import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.entities.Location;
 import locationsapp.repository.LocationsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

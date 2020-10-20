@@ -1,4 +1,4 @@
-package locationsapp.controller;
+package locationsapp.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -7,7 +7,10 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
-public class CreateLocationCommand {
+public class UpdateLocationCommand {
+
+    @Schema(description = "id of the location", example = "1")
+    private long id;
 
     @NotBlank(message = "Name must not be blank")
     @Schema(description="name of the location", example = "Budapest")
@@ -22,5 +25,4 @@ public class CreateLocationCommand {
 
     @Schema(description = "Tags", example = "capital,favourite")
     private String tags;
-
 }

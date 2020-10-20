@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "locations")
+@Table(name = "location")
 public class Location {
 
     @Id
@@ -28,6 +28,11 @@ public class Location {
     private LocalDateTime interestingAt;
 
     @ElementCollection
+    @CollectionTable(
+            name="tag",
+            joinColumns=@JoinColumn(name="location_id", referencedColumnName = "id")
+    )
+    @Column(name = "name")
     @OrderBy
     private List<String> tags;
 
