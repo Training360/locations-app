@@ -29,10 +29,12 @@ public class LocationsService {
     }
 
     public Page<LocationDto> listLocations(Pageable pageable) {
+        log.debug("List locations");
         return locationsRepository.findAllWithTags(pageable).map(l -> modelMapper.map(l, LocationDto.class));
     }
 
     public List<LocationDto> listLocations() {
+        log.debug("List locations");
         return locationsRepository.findAllWithTags(Pageable.unpaged()).getContent()
                 .stream()
                 .map(l -> modelMapper.map(l, LocationDto.class))
@@ -53,7 +55,7 @@ public class LocationsService {
         location.setTags(parseTags(command.getTags()));
 
         locationsRepository.save(location);
-        log.info(String.format("Location has created id: %s, name: %s", location.getId(), command.getName()));
+        log.info(String.format("Location has been created id: %s, name: %s", location.getId(), command.getName()));
         return modelMapper.map(location, LocationDto.class);
     }
 
@@ -81,7 +83,7 @@ public class LocationsService {
         location.setInterestingAt(command.getInterestingAt());
         location.setTags(parseTags(command.getTags()));
 
-        log.info(String.format("Location has updated id: %s, name: %s", command.getId(), command.getName()));
+        log.info(String.format("Location has been updated id: %s, name: %s", command.getId(), command.getName()));
         return Optional.of(modelMapper.map(location, LocationDto.class));
     }
 
@@ -89,7 +91,7 @@ public class LocationsService {
         var location = locationsRepository.findById(id);
         if (location.isPresent()) {
             locationsRepository.delete(location.get());
-            log.info(String.format("Location has deleted, id: %s", id));
+            log.info(String.format("Location has been deleted, id: %s", id));
             return true;
         }
         return false;
@@ -103,6 +105,7 @@ public class LocationsService {
     }
 
     public void deleteAllLocations() {
+        log.info("Delete all locations");
         locationsRepository.deleteAll();
     }
 }
