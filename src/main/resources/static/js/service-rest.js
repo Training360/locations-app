@@ -1,7 +1,7 @@
-let prefix = 'http://localhost:8080'
+let prefix = ''
 
 function findAll(callback) {
-    let url = prefix + '/api/locations';
+    let url = prefix + 'api/locations';
     fetch(url)
             .then(function(response) {
                 return response.json();
@@ -12,7 +12,7 @@ function findAll(callback) {
 }
 
 function save(data, callback) {
-    const url = prefix + '/api/locations';
+    const url = prefix + 'api/locations';
     const jsonData = JSON.stringify(data)
 
     fetch("api/locations", {
@@ -33,7 +33,7 @@ function save(data, callback) {
 
 
 function deleteById(id, callback) {
-    const url = prefix + '/api/locations/' + id;
+    const url = prefix + 'api/locations/' + id;
     fetch(url, {
                 method: "DELETE"
             })
@@ -43,7 +43,7 @@ function deleteById(id, callback) {
 }
 
 function update(id, data, callback) {
-    const url = prefix + '/api/locations/' + id;
+    const url = prefix + 'api/locations/' + id;
     const jsonData = JSON.stringify(data)
     fetch(url, {
             method: "POST",
