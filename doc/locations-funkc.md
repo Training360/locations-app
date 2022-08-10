@@ -30,22 +30,3 @@ Törölni a `Delete` gombbal lehet. Törlés gombra nyomva, ha éppen új felvé
 szerkesztés volt folyamatban, az az űrlap eltűnik. A törlés előtt rákérdez.
 A törlés tényéről üzenet jelenik meg.
 Amennyiben nem az első oldal került megjelenítésre, a törlés után visszaugrik arra.
-
-## Alkalmazás telepítése
-
-Az alkalmazás futtatásához szükséges egy MariaDB a localhostra telepítve, `locations`
-sémával, és ugyanezzel a felhasználóval és jelszóval.
-
-Töltsd le a `locations-app.jar` állományt. Az alkalmazás 12-es Java-t követel meg.
-Telepítsd fel a 12-es Java-t!
-Ekkor a `C:\Program Files (x86)\Java` könyvtárba kerül feltelepítésre.
-
-Az alkalmazás futtatása:
-
-```
-java -jar locations-app.jar
-```
-
-(Amennyiben a java nincs a PATH-ban, teljes elérési útvonalat kell megadni.)
-
-Az alkalmazás indítás után elérhető böngészőből a `http://localhost:8080` címen.
