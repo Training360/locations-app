@@ -10,7 +10,7 @@ import locationsapp.dto.LocationDto;
 import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.error.ValidationError;
 import locationsapp.service.LocationsService;
-import org.springdoc.data.rest.converters.PageableAsQueryParam;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
