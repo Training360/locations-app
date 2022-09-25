@@ -41,5 +41,5 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKER_HUB_USERNAME }}/training360/locations:latest
-          ${{ secrets.DOCKER_HUB_USERNAME }}/training360/locations:${{ steps.get_version.outputs.version }}
+          training360/locations:latest
+          training360/locations:${{ steps.get_version.outputs.version }}
