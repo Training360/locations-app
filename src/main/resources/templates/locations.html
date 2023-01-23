@@ -26,6 +26,7 @@
         <tbody>
         <th:block th:each="location : ${page.content}">
             <tr>
+                <td th:text="${location.id}"></td>
                 <td th:text="${location.name}"></td>
                 <td th:text="${location.lat + ', ' + location.lon}"></td>
                 <td>

@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: locations
 
   locations-app:
-    image: training360/locations
+    image: training360/jmeter-locations
     ports:
       - "8080:8080"
     restart: always

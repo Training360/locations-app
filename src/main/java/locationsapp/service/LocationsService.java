@@ -5,8 +5,10 @@ import locationsapp.dto.LocationDto;
 import locationsapp.dto.UpdateLocationCommand;
 import locationsapp.entities.Location;
 import locationsapp.repository.LocationsRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,16 +19,14 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class LocationsService {
 
     private LocationsRepository locationsRepository;
 
     private ModelMapper modelMapper;
 
-    public LocationsService(LocationsRepository locationsRepository, ModelMapper modelMapper) {
-        this.locationsRepository = locationsRepository;
-        this.modelMapper = modelMapper;
-    }
+    private ApplicationEventPublisher publisher;
 
     public Page<LocationDto> listLocations(Pageable pageable) {
         log.debug("List locations");
@@ -56,6 +56,9 @@ public class LocationsService {
 
         locationsRepository.save(location);
         log.info(String.format("Location has been created id: %s, name: %s", location.getId(), command.getName()));
+
+        publisher.publishEvent(new LocationEvent("Location has been created id: %s, name: %s".formatted(location.getId(), command.getName())));
+
         return modelMapper.map(location, LocationDto.class);
     }
 
@@ -84,6 +87,9 @@ public class LocationsService {
         location.setTags(parseTags(command.getTags()));
 
         log.info(String.format("Location has been updated id: %s, name: %s", command.getId(), command.getName()));
+
+        publisher.publishEvent(new LocationEvent("Location has been updated id: %s, name: %s".formatted(location.getId(), command.getName())));
+
         return Optional.of(modelMapper.map(location, LocationDto.class));
     }
 
@@ -92,6 +98,7 @@ public class LocationsService {
         if (location.isPresent()) {
             locationsRepository.delete(location.get());
             log.info(String.format("Location has been deleted, id: %s", id));
+            publisher.publishEvent(new LocationEvent("Location has been deleted, id: %s".formatted(id)));
             return true;
         }
         return false;
