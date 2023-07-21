@@ -1,26 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: locations
   name: locations
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: locations
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: locations
     spec:
       containers:
       - image: locations:0.0.1-SNAPSHOT
         name: locations
-        resources: {}
         env:
             - name: SPRING_DATASOURCE_URL
               valueFrom:
@@ -37,12 +32,10 @@ spec:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_PASSWORD
-status: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
   labels:
     app: locations
   name: locations

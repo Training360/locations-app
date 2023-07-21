@@ -7,15 +7,15 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_DATABASE: locations
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes' # aposztrófok nélkül boolean true-ként értelmezi
-      MYSQL_USER: locations
-      MYSQL_PASSWORD: locations
+      MARIADB_DATABASE: locations
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 'yes' # aposztrófok nélkül boolean true-ként értelmezi
+      MARIADB_USER: locations
+      MARIADB_PASSWORD: locations
 
   locations-app:
-    image: training360/jmeter-locations
+    image: training360/locations
     ports:
-      - "8080:8080"
+      - '8080:8080'
     restart: always
     depends_on:
       - locations-mariadb
